@@ -12,7 +12,8 @@ namespace TodoIt.Model
         private String lastName;
 
         public string FirstName 
-        { get => firstName; 
+        { 
+          get => firstName; 
           set {
                 if (string.IsNullOrEmpty(value))
                 {
