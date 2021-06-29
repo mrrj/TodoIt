@@ -6,19 +6,5 @@ namespace TodoIt.Data
 {
     public class TodoItems
     {
-
-        private static int todoId;
-        public static int TodoId { get => todoId; set => todoId = value; }
-
-        public static int NextTodoId()
-        {
-            TodoId++;
-            return TodoId;
-        }
-
-        public static void Reset()
-        {
-            TodoId = 0;
-        }
     }
 }
