@@ -27,6 +27,7 @@ namespace TodoIt.Model
             }
         }
 
+        public int TodoId => todoId;
 
         public Todo(int todoId, String description)
         {
