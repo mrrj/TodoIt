@@ -8,12 +8,13 @@ namespace TodoIt.Tests
 {
     public class PersonSequencerTests
     {
-        [Fact]
+        /*[Fact]
         public void PersonIdZeroAfterReset()
-        {            
+        {
             PersonSequencer.Reset();
 
-            Assert.Equal(0,PersonSequencer.PersonId);
-        }
+            Assert.Equal(0, PersonSequencer.PersonId);
+        }*/
+
     }
 }

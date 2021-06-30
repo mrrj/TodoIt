@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TodoIt.Data;
 
 namespace TodoIt.Model
 {
     public class Person
     {
-        private readonly int personId;
+        private readonly int personId = PersonSequencer.NextPersonId();
 
         private String firstName;
         private String lastName;
@@ -41,6 +42,8 @@ namespace TodoIt.Model
                 }
             }
         }
+
+        public int PersonId => personId;
 
         public Person(String firstName, String lastName)
         {
