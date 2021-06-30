@@ -49,6 +49,7 @@ namespace TodoIt.Model
         {
             FirstName = firstName;
             LastName = lastName;
+            this.personId = PersonSequencer.NextPersonId();
         }
 
         
