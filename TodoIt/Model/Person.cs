@@ -7,7 +7,7 @@ namespace TodoIt.Model
 {
     public class Person
     {
-        private readonly int personId = PersonSequencer.NextPersonId();
+        private readonly int personId;
 
         private String firstName;
         private String lastName;
