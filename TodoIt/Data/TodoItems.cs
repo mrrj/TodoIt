@@ -36,9 +36,9 @@ namespace TodoIt.Data
 
         }
 
-        public Todo MakeTodoItem(int todoId, String description)
+        public Todo MakeTodoItem(String description)
         {
-            Todo todo = new Todo(todoId, description);
+            Todo todo = new Todo(description);
             Array.Resize(ref items, items.Length + 1);
             items[items.Length - 1] = todo;
             return todo;

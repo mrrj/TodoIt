@@ -11,7 +11,7 @@ namespace TodoIt.Tests
         {
             String testDescription = "Get a pen.";
 
-            Todo todo = new Todo(5, testDescription);
+            Todo todo = new Todo(testDescription);
 
             Assert.Equal(testDescription, todo.Description);
         }

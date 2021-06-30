@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TodoIt.Data;
 
 namespace TodoIt.Model
 {
@@ -29,9 +30,9 @@ namespace TodoIt.Model
 
         public int TodoId => todoId;
 
-        public Todo(int todoId, String description)
+        public Todo(String description)
         {
-            this.todoId = todoId;
+            this.todoId = TodoSequencer.NextTodoId();
             this.Description = description;
 
         }
