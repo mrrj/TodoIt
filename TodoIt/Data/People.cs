@@ -9,7 +9,7 @@ namespace TodoIt.Data
     {
         private static Person[] persons = new Person[0];
 
-        public static Person[] Persons { get => persons; set => persons = value; }
+        public static Person[] Persons { get => persons; }
 
         public int Size()
         {
@@ -47,6 +47,7 @@ namespace TodoIt.Data
         public void Clear()
         {
             Array.Resize(ref persons, 0);
+            PersonSequencer.Reset();
         }
 
     }
