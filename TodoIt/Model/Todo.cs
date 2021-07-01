@@ -30,6 +30,14 @@ namespace TodoIt.Model
 
         public int TodoId => todoId;
 
+        public Person Assignee
+        {
+            get { return assignee; }
+            set { assignee = value; }
+        }
+
+        public bool Done { get => done; set => done = value; }
+
         public Todo(String description)
         {
             this.todoId = TodoSequencer.NextTodoId();
