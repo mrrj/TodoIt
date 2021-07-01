@@ -12,6 +12,7 @@ namespace TodoIt.Tests
         [Fact]
         public void PersonsLengthIncreasesByOne()
         {
+            PersonSequencer.Reset();
             People peopleTest = new People();
             int before = peopleTest.Size();
 
@@ -19,12 +20,11 @@ namespace TodoIt.Tests
             int after = peopleTest.Size();
 
             Assert.Equal(before + 1, after);
-            PersonSequencer.Reset();
-
+            peopleTest.Clear();
         }
        
         [Fact]
-        public void ClearReturnsArrayOfLengthZero()
+        public void SizeIsZeroAfterClear()
         {
             People peopleTest = new People();
 
@@ -38,7 +38,7 @@ namespace TodoIt.Tests
             int actualLength = peopleTest.Size();
 
             Assert.Equal(expectedLength, actualLength);
-
+            peopleTest.Clear();
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace TodoIt.Tests
             int actualLength = peopleTest.Size();
 
             Assert.Equal(expectedLength, actualLength);
-            PersonSequencer.Reset();
+            peopleTest.Clear();
 
         }
 
@@ -67,13 +67,14 @@ namespace TodoIt.Tests
             Person evert = peopleTest.MakePerson("Evert", "Taube");
             Person lilleSkutt = peopleTest.MakePerson("Lille", "Skutt");
 
-            Person expectedPerson = lilleSkutt;
+            Person expectedPerson = evert;
             int idOfExpected = expectedPerson.PersonId;
 
-            Person actualPersonId = peopleTest.FindById(idOfExpected);
+            Person actualPerson = peopleTest.FindById(idOfExpected);
 
-            Assert.Equal(expectedPerson, actualPersonId);
-            PersonSequencer.Reset();
+            Assert.Equal(expectedPerson, actualPerson);
+            peopleTest.Clear();
+
         }
 
         [Fact]
@@ -88,8 +89,7 @@ namespace TodoIt.Tests
             int failId = PersonSequencer.NextPersonId();
 
             Assert.Throws<ArgumentException>(() => peopleTest.FindById(failId));
-            PersonSequencer.Reset();
-
+            peopleTest.Clear();
         }
 
     }
