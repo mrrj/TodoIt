@@ -49,5 +49,16 @@ namespace TodoIt.Data
             Array.Resize(ref persons, 0);
         }
 
+        public void RemovePerson(int personId)
+        {
+            int itemIndex = Array.FindIndex<Person>(persons, item => item.PersonId == personId);
+
+            for (int i = itemIndex; i < persons.Length - 1; i++)
+            {
+                persons[i] = persons[i + 1];
+            }
+            Array.Resize<Person>(ref persons, persons.Length - 1);
+        }
+
     }
 }

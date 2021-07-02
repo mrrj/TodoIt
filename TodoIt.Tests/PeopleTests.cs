@@ -96,5 +96,53 @@ namespace TodoIt.Tests
             PersonSequencer.Reset();
         }
 
+        [Fact]
+        public void RemoveItemsMakesItemsSizeDecreaseByOne()
+        {
+            People peopleTest = new People();
+
+            Person anna = peopleTest.MakePerson("Anna", "Johansson");
+            Person evert = peopleTest.MakePerson("Evert", "Taube");
+            Person lilleSkutt = peopleTest.MakePerson("Lille", "Skutt");
+
+            int annasId = anna.PersonId;
+            int sizeBefore = peopleTest.Size();
+
+
+            peopleTest.RemovePerson(annasId);
+
+            int expectedSize = sizeBefore - 1;
+            int sizeAfter = peopleTest.Size();
+
+            Assert.Equal(expectedSize, sizeAfter);
+
+            peopleTest.Clear();
+            PersonSequencer.Reset();
+
+        }
+
+
+        [Fact]
+        public void RemoveItemsRemovesCorrectItem()
+        {
+            People peopleTest = new People();
+
+            Person anna = peopleTest.MakePerson("Anna", "Johansson");
+            Person evert = peopleTest.MakePerson("Evert", "Taube");
+            Person lilleSkutt = peopleTest.MakePerson("Lille", "Skutt");
+            int annasId = anna.PersonId;
+
+            peopleTest.RemovePerson(annasId);
+            Person[] people = peopleTest.FindAll();
+          
+            Assert.DoesNotContain<Person>(anna, people);
+            Assert.Contains<Person>(evert, people);
+            Assert.Contains<Person>(lilleSkutt, people);
+
+            peopleTest.Clear();
+            PersonSequencer.Reset();
+
+        }
+
     }
 }
