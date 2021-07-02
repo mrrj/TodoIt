@@ -68,7 +68,6 @@ namespace TodoIt.Data
             Todo[] assigneeItems = new Todo[0];
             for (int i = 0; i < items.Length; i++)
             {
-                //todo: check if assignee exists
                 Person itemAssignee = items[i].Assignee;
                 if (itemAssignee != null && itemAssignee.PersonId == personId)
                 {
@@ -104,6 +103,17 @@ namespace TodoIt.Data
                 }
             }
             return noAssignee;
+        }
+
+        public void RemoveItem(int itemId)
+        {
+            int itemIndex = Array.FindIndex<Todo>(items, item => item.TodoId == itemId);
+
+            for(int i = itemIndex; i < items.Length-1 ; i++)
+            {
+                items[i] = items[i + 1];
+            }
+            Array.Resize<Todo>(ref items, items.Length - 1);
         }
     }
 }

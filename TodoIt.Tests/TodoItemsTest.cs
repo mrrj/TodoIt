@@ -191,6 +191,55 @@ namespace TodoIt.Tests
             PersonSequencer.Reset();
         }
 
+        [Fact]
+        public void RemoveItemsMakesItemsSizeDecreaseByOne()
+        {
+            TodoItems items = new TodoItems();
+
+            Todo eatApple = items.MakeTodoItem("Eat an apple.");
+            Todo makeCoffee = items.MakeTodoItem("Make coffee");
+            Todo getPen = items.MakeTodoItem("Get a pen.");
+
+            int getPenId = getPen.TodoId;
+            int sizeBefore = items.Size();
+            
+
+            items.RemoveItem(getPenId);
+
+            int expectedSize = sizeBefore - 1;
+            int sizeAfter = items.Size();
+
+            Assert.Equal(expectedSize, sizeAfter);
+
+            items.Clear();
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+
+        }
+
+
+        [Fact]
+        public void RemoveItemsRemovesCorrectItem()
+        {
+            TodoItems todoItems = new TodoItems();
+
+            Todo eatApple = todoItems.MakeTodoItem("Eat an apple.");
+            Todo makeCoffee = todoItems.MakeTodoItem("Make coffee");
+            Todo getPen = todoItems.MakeTodoItem("Get a pen.");
+
+            todoItems.RemoveItem(makeCoffee.TodoId);
+            Todo[] items = todoItems.FindAll();
+
+            Assert.Contains<Todo>(eatApple, items);
+            Assert.DoesNotContain<Todo>(makeCoffee,items);
+            Assert.Contains<Todo>(getPen, items);
+
+            todoItems.Clear();
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+
+        }
+
 
     }
 }

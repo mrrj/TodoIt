@@ -28,7 +28,7 @@ namespace TodoIt.Model
             }
         }
 
-        public int TodoId => todoId;
+        public int TodoId { get => todoId; }
 
         public Person Assignee
         {
