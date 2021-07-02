@@ -47,7 +47,6 @@ namespace TodoIt.Data
         public void Clear()
         {
             Array.Resize(ref items, 0);
-            TodoSequencer.Reset();
         }
 
         public Todo[] FindByDoneStatus(bool doneStatus)
@@ -69,7 +68,9 @@ namespace TodoIt.Data
             Todo[] assigneeItems = new Todo[0];
             for (int i = 0; i < items.Length; i++)
             {
-                if (items[i].Assignee.PersonId == personId)
+                //todo: check if assignee exists
+                Person itemAssignee = items[i].Assignee;
+                if (itemAssignee != null && itemAssignee.PersonId == personId)
                 {
                     Array.Resize(ref assigneeItems, assigneeItems.Length + 1);
                     assigneeItems[assigneeItems.Length - 1] = items[i];

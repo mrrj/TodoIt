@@ -21,6 +21,7 @@ namespace TodoIt.Tests
 
             Assert.Equal(before + 1, after);
             peopleTest.Clear();
+            PersonSequencer.Reset();
         }
        
         [Fact]
@@ -39,6 +40,7 @@ namespace TodoIt.Tests
 
             Assert.Equal(expectedLength, actualLength);
             peopleTest.Clear();
+            PersonSequencer.Reset();
         }
 
         [Fact]
@@ -55,6 +57,7 @@ namespace TodoIt.Tests
 
             Assert.Equal(expectedLength, actualLength);
             peopleTest.Clear();
+            PersonSequencer.Reset();
 
         }
 
@@ -74,7 +77,7 @@ namespace TodoIt.Tests
 
             Assert.Equal(expectedPerson, actualPerson);
             peopleTest.Clear();
-
+            PersonSequencer.Reset();
         }
 
         [Fact]
@@ -90,6 +93,7 @@ namespace TodoIt.Tests
 
             Assert.Throws<ArgumentException>(() => peopleTest.FindById(failId));
             peopleTest.Clear();
+            PersonSequencer.Reset();
         }
 
     }

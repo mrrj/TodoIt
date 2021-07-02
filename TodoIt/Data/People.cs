@@ -47,7 +47,6 @@ namespace TodoIt.Data
         public void Clear()
         {
             Array.Resize(ref persons, 0);
-            PersonSequencer.Reset();
         }
 
     }

@@ -23,6 +23,7 @@ namespace TodoIt.Tests
 
             Assert.Equal(before + 1, after);
             itemsTest.Clear();
+            TodoSequencer.Reset();
         }
 
         [Fact]
@@ -77,6 +78,7 @@ namespace TodoIt.Tests
 
             Assert.Equal(expectedItem, actualItem);
             items.Clear();
+            TodoSequencer.Reset();
         }
 
         [Fact]
@@ -93,6 +95,77 @@ namespace TodoIt.Tests
 
             Assert.Throws<ArgumentException>(() => items.FindById(failId));
             items.Clear();
+            TodoSequencer.Reset();
+        }
+
+        [Fact]
+        public void FindByDoneStatusContainsCorrectItems()
+        {
+
+            TodoItems items = new TodoItems();
+
+            Todo eatApple = items.MakeTodoItem("Eat an apple.");
+            Todo makeCoffee = items.MakeTodoItem("Make coffee");
+            Todo getPen = items.MakeTodoItem("Get a pen.");
+
+            eatApple.Done = true;
+            getPen.Done = true;
+
+            Todo[] doneItems = items.FindByDoneStatus(true);
+
+            Assert.Contains<Todo>(eatApple, doneItems);
+            Assert.Contains<Todo>(getPen, doneItems);
+            Assert.DoesNotContain<Todo>(makeCoffee, doneItems);
+            
+            items.Clear();
+            TodoSequencer.Reset();
+        }
+
+        [Fact]
+        public void FindByAssigneeIdReurnsCorrectItems()
+        {
+
+            TodoItems items = new TodoItems();
+
+            Todo eatApple = items.MakeTodoItem("Eat an apple.");
+            Todo makeCoffee = items.MakeTodoItem("Make coffee");
+            Todo getPen = items.MakeTodoItem("Get a pen.");
+            Person ellen = new Person("Ellen", "Skog");
+            eatApple.Assignee = ellen;
+            int ellensId = ellen.PersonId;
+
+            Todo[] ellensItems = items.FindByAssignee(ellensId);
+            
+            Assert.Contains<Todo>(eatApple, ellensItems);
+            Assert.DoesNotContain<Todo>(makeCoffee,ellensItems);
+            Assert.DoesNotContain<Todo>(getPen, ellensItems);
+
+            items.Clear();
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+        }
+
+        [Fact]
+        public void FindByAssigneePersonReurnsCorrectItems()
+        {
+
+            TodoItems items = new TodoItems();
+
+            Todo eatApple = items.MakeTodoItem("Eat an apple.");
+            Todo makeCoffee = items.MakeTodoItem("Make coffee");
+            Todo getPen = items.MakeTodoItem("Get a pen.");
+            Person ellen = new Person("Ellen", "Skog");
+            eatApple.Assignee = ellen;
+
+            Todo[] ellensItems = items.FindByAssignee(ellen);
+
+            Assert.Contains<Todo>(eatApple, ellensItems);
+            Assert.DoesNotContain<Todo>(makeCoffee, ellensItems);
+            Assert.DoesNotContain<Todo>(getPen, ellensItems);
+
+            items.Clear();
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
         }
 
 

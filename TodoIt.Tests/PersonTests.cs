@@ -29,5 +29,16 @@ namespace TodoIt.Tests
             Assert.Equal(lastName,person.LastName);
             
         }
+
+        [Fact]
+        public void PersonIdNotZero()
+        {
+            Person sven = new Person("Sven","Svensson");
+
+            int svensId = sven.PersonId;
+
+            Assert.False(svensId == 0);
+
+        }
     }
 }
